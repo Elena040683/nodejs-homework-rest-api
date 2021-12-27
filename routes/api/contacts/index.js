@@ -12,11 +12,12 @@ import {
   validateUpdate,
   validateId,
   validateUpdateFavorite,
+  validateQuery,
 } from "./validation";
 
 const router = new Router();
 
-router.get("/", getContacts);
+router.get("/", validateQuery, getContacts);
 
 router.get("/:id", validateId, getContactById);
 
