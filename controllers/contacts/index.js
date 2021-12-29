@@ -12,7 +12,7 @@ const getContacts = async (req, res, next) => {
 const getContactById = async (req, res, next) => {
   const { id } = req.params;
   const contact = await repositoryContacts.getContactById(id);
-  console.log(contact); // toObject
+
   if (contact) {
     return res
       .status(HttpCode.OK)
