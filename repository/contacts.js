@@ -8,7 +8,7 @@ const listContacts = async ({
   skip = 0,
 }) => {
   let sortCriteria = null;
-  const total = await Contact.find().countDocuments();
+  const total = await Contact.countDocuments();
   let result = Contact.find();
   if (sortBy) {
     sortCriteria = { [`${sortBy}`]: 1 };
