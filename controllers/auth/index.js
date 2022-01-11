@@ -4,7 +4,6 @@ import AuthService from "../../service/auth";
 const authService = new AuthService();
 
 const registration = async (req, res, next) => {
-  console.log(req.body);
   const { email } = req.body;
   const isUserExist = await authService.isUserExist(email);
   if (isUserExist) {
@@ -42,4 +41,15 @@ const logout = async (req, res, next) => {
     .status(HttpCode.NO_CONTENT)
     .json({ status: "success", code: HttpCode.OK, data: {} });
 };
-export { registration, login, logout };
+
+const getCurrentUser = async (req, res, next) => {
+  const { email, subscription } = req.user;
+  res
+    .status(HttpCode.OK)
+    .json({
+      status: "success",
+      code: HttpCode.OK,
+      data: { email, subscription },
+    });
+};
+export { registration, login, logout, getCurrentUser };

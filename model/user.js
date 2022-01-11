@@ -1,6 +1,6 @@
 import pkg from "mongoose";
 import bcrypt from "bcryptjs";
-import { Role } from "../lib/constants";
+import { Role, Subscription } from "../lib/constants";
 
 const { Schema, model } = pkg;
 
@@ -30,6 +30,14 @@ const userSchema = new Schema(
         message: "Role is not allowed",
       },
       default: Role.USER,
+    },
+    subscription: {
+      type: String,
+      enum: {
+        values: Object.values(Subscription),
+        message: "Subscription is not allowed",
+      },
+      default: Subscription.STARTER,
     },
     token: {
       type: String,
