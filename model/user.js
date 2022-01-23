@@ -1,4 +1,5 @@
 import pkg from "mongoose";
+import { randomUUID } from "crypto";
 import bcrypt from "bcryptjs";
 import { Role, Subscription } from "../lib/constants";
 import gravatar from "gravatar";
@@ -53,6 +54,11 @@ const userSchema = new Schema(
     idAvatarCloud: {
       type: String,
       default: null,
+    },
+    isVerify: { type: Boolean, default: false },
+    verifyTokenEmail: {
+      type: String,
+      default: randomUUID(),
     },
   },
   {
