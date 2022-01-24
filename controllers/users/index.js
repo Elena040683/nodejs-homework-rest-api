@@ -10,7 +10,7 @@ import {
 import {
   EmailService,
   SenderNodemailer,
-  SenderSendgrid,
+  // SenderSendgrid,
 } from "../../service/email";
 
 const aggregation = async (req, res, next) => {

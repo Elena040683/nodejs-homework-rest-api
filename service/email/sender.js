@@ -1,17 +1,17 @@
-import sgMail from "@sendgrid/mail";
+// import sgMail from "@sendgrid/mail";
 import nodemailer from "nodemailer";
 
-class SenderSendgrid {
-  async send(msg) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    return await sgMail.send({ ...msg, from: process.env.SENDER_SENDGRID });
-  }
-}
+// class SenderSendgrid {
+//   async send(msg) {
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//     return await sgMail.send({ ...msg, from: process.env.SENDER_SENDGRID });
+//   }
+// }
 
 class SenderNodemailer {
   async send(msg) {
     const config = {
-      host: "smtp.meta.ua",
+      host: "smtp.mail.ru",
       port: 465,
       secure: true,
       auth: {
@@ -27,4 +27,4 @@ class SenderNodemailer {
   }
 }
 
-export { SenderSendgrid, SenderNodemailer };
+export { SenderNodemailer };
