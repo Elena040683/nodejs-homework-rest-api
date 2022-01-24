@@ -11,7 +11,7 @@ import nodemailer from "nodemailer";
 class SenderNodemailer {
   async send(msg) {
     const config = {
-      host: "smtp.mail.ru",
+      host: "smtp.gmail.com",
       port: 465,
       secure: true,
       auth: {
