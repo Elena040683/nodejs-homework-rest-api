@@ -2,7 +2,7 @@ import makeMiddleware from "multer/lib/make-middleware";
 import app from "../app";
 import db from "../lib/db";
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5000;
 
 db.then(() => {
   app.listen(PORT, async () => {
