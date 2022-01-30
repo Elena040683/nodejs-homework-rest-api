@@ -1,4 +1,4 @@
 import EmailService from "./service";
-import { SenderNodemailer } from "./sender";
+import { SenderSendgrid } from "./sender";
 
-export { EmailService, SenderNodemailer };
+export { EmailService, SenderSendgrid };

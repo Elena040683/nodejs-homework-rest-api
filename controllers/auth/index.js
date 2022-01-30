@@ -2,8 +2,8 @@ import { HttpCode } from "../../lib/constants";
 import authService from "../../service/auth";
 import {
   EmailService,
-  SenderNodemailer,
-  // SenderSendgrid,
+  // SenderNodemailer,
+  SenderSendgrid,
 } from "../../service/email";
 
 const registration = async (req, res, next) => {
@@ -18,10 +18,11 @@ const registration = async (req, res, next) => {
       });
     }
     const userData = await authService.create(req.body);
+
     const emailService = new EmailService(
       process.env.NODE_ENV,
-      // new SenderSendgrid()
-      new SenderNodemailer()
+      new SenderSendgrid()
+      // new SenderNodemailer()
     );
 
     const isSend = await emailService.sendVerifyEmail(

@@ -9,8 +9,8 @@ import {
 
 import {
   EmailService,
-  SenderNodemailer,
-  // SenderSendgrid,
+  // SenderNodemailer,
+  SenderSendgrid,
 } from "../../service/email";
 
 const aggregation = async (req, res, next) => {
@@ -52,7 +52,7 @@ const verifyUser = async (req, res, next) => {
     });
   }
   res.status(HttpCode.BAD_REQUEST).json({
-    status: "success",
+    status: "error",
     code: HttpCode.BAD_REQUEST,
     data: { message: "Invalid token" },
   });
@@ -65,7 +65,8 @@ const repeatEmailForVerifyUser = async (req, res, next) => {
     const { email, name, verifyTokenEmail } = user;
     const emailService = new EmailService(
       process.env.NODE_ENV,
-      new SenderNodemailer()
+      // new SenderNodemailer()
+      new SenderSendgrid()
     );
 
     const isSend = await emailService.sendVerifyEmail(
@@ -80,14 +81,14 @@ const repeatEmailForVerifyUser = async (req, res, next) => {
         data: { message: "Success" },
       });
     }
-    return res.status(HttpCode.UE).json({
+    return res.status(HttpCode.SERVER_UNAVAILABLE).json({
       status: "error",
       code: HttpCode.UE,
-      data: { message: "Unprocessable Entity" },
+      data: { message: "Server Unavailable" },
     });
   }
 
-  res.status(HttpCode.NOT_FOUND).json({
+  return res.status(HttpCode.NOT_FOUND).json({
     status: "error",
     code: HttpCode.NOT_FOUND,
     data: { message: "User with email not found" },

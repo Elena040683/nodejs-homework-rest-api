@@ -55,7 +55,10 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    isVerify: { type: Boolean, default: false },
+    isVerify: {
+      type: Boolean,
+      default: false,
+    },
     verifyTokenEmail: {
       type: String,
       default: randomUUID,
